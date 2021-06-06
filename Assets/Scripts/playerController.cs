@@ -25,12 +25,9 @@ public class playerController : MonoBehaviour
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
 
-        if(moveInput != Vector2.zero)
-        {
-            Vector3 newPos = transform.forward * moveInput.y + transform.right * moveInput.x;
-            Vector3 smoothNewPos = Vector3.Lerp(transform.position, transform.position + newPos, smoothSpeed * Time.deltaTime);
+        Vector3 newPos = transform.forward * moveInput.y + transform.right * moveInput.x;
+        Vector3 smoothNewPos = Vector3.Lerp(transform.position, transform.position + newPos, playerSpeed * smoothSpeed * Time.deltaTime);
 
-            plrRigidbody.MovePosition(smoothNewPos);
-        }
+        plrRigidbody.MovePosition(smoothNewPos);
     }
 }
