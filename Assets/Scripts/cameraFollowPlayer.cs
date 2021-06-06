@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class cameraFollowPlayer : MonoBehaviour
 {
@@ -13,7 +14,16 @@ public class cameraFollowPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        plr = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject[] plrs = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach(GameObject g in plrs)
+        {
+            if(g.GetComponent<PhotonView>().IsMine)
+            {
+                plr = g.transform;
+                break;
+            }
+        }
     }
 
     // Update is called once per frame
