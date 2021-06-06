@@ -5,7 +5,7 @@ using Photon.Pun;
 
 
 [RequireComponent(typeof(Rigidbody))]
-public class playerController : MonoBehaviour
+public class playerController : MonoBehaviourPun
 {
 
     public float playerSpeed = 2f;
@@ -36,5 +36,11 @@ public class playerController : MonoBehaviour
 
             plrRigidbody.MovePosition(smoothNewPos);
         }
+    }
+
+    [PunRPC]
+    public void changeColor(Vector3 newColor)
+    {
+        GetComponent<Renderer>().material.color = new Color(newColor.x, newColor.y, newColor.z);
     }
 }

@@ -14,7 +14,8 @@ public class spawnPlayers : MonoBehaviour
     {
         Vector3 spawnPos = new Vector3(Random.Range(plrSpawnMin.x, plrSpawnMax.x), Random.Range(plrSpawnMin.y, plrSpawnMax.y), Random.Range(plrSpawnMin.z, plrSpawnMax.z));
         GameObject plr = PhotonNetwork.Instantiate(plrPrefab.name, spawnPos, Quaternion.identity);
-        plr.GetComponent<Renderer>().material.color = Random.ColorHSV();
+        Color randomColor = Random.ColorHSV();
+        plr.GetComponent<PhotonView>().RPC("changeColor", RpcTarget.AllBuffered, new Vector3(randomColor.r, randomColor.g, randomColor.b));
     }
 
     // Update is called once per frame

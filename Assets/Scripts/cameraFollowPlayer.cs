@@ -28,7 +28,7 @@ public class cameraFollowPlayer : MonoBehaviour
         }
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         Vector3 newPos = plr.position + plr.forward * offset.z + plr.right * offset.x + plr.up * offset.y;
         Vector3 smoothNewPos = Vector3.Lerp(transform.position, newPos, cameraFollowSmoothSpeed * Time.deltaTime);
