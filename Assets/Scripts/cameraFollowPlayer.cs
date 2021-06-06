@@ -11,25 +11,21 @@ public class cameraFollowPlayer : MonoBehaviour
 
     Transform plr;
 
+    bool findingPlr = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        GameObject[] plrs = GameObject.FindGameObjectsWithTag("Player");
-
-        foreach(GameObject g in plrs)
-        {
-            if(g.GetComponent<PhotonView>().IsMine)
-            {
-                plr = g.transform;
-                break;
-            }
-        }
+        StartCoroutine(findLocalPlayer());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(plr == null && !findingPlr)
+        {
+            StartCoroutine(findLocalPlayer());
+        }
     }
 
     void LateUpdate()
@@ -39,5 +35,23 @@ public class cameraFollowPlayer : MonoBehaviour
 
         transform.position = smoothNewPos;
         transform.LookAt(plr);
+    }
+
+    IEnumerator findLocalPlayer()
+    {
+        findingPlr = true;
+        GameObject[] plrs = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach (GameObject g in plrs)
+        {
+            if (g.GetComponent<PhotonView>().IsMine)
+            {
+                plr = g.transform;
+                break;
+            }
+        }
+
+        findingPlr = false;
+        yield return null;
     }
 }

@@ -13,7 +13,8 @@ public class spawnPlayers : MonoBehaviour
     void Start()
     {
         Vector3 spawnPos = new Vector3(Random.Range(plrSpawnMin.x, plrSpawnMax.x), Random.Range(plrSpawnMin.y, plrSpawnMax.y), Random.Range(plrSpawnMin.z, plrSpawnMax.z));
-        PhotonNetwork.Instantiate(plrPrefab.name, spawnPos, Quaternion.identity);
+        GameObject plr = PhotonNetwork.Instantiate(plrPrefab.name, spawnPos, Quaternion.identity);
+        plr.GetComponent<Renderer>().material.color = Random.ColorHSV();
     }
 
     // Update is called once per frame
