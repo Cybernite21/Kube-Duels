@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Photon.Pun;
 
 
@@ -20,6 +21,7 @@ public class playerController : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         plrRigidbody = GetComponent<Rigidbody>();
     }
 
@@ -27,6 +29,13 @@ public class playerController : MonoBehaviourPun
     void Update()
     {
         turn = Input.GetAxisRaw("Mouse X");
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            PhotonNetwork.LeaveRoom();
+            SceneManager.LoadScene("Lobby");
+        }
     }
 
     // Update is called once per frame
