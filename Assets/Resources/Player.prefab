@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   smoothSpeed: 0.5
+  turnSpeed: 100
 --- !u!114 &8671806435576125662
 MonoBehaviour:
   m_ObjectHideFlags: 0

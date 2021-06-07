@@ -10,17 +10,23 @@ public class playerController : MonoBehaviourPun
 
     public float playerSpeed = 2f;
     public float smoothSpeed = 0.5f;
+    public float turnSpeed = 75f;
 
     Rigidbody plrRigidbody;
     Vector2 moveInput;
 
-    PhotonView photonView;
+    float turn;
 
     // Start is called before the first frame update
     void Start()
     {
         plrRigidbody = GetComponent<Rigidbody>();
-        photonView = GetComponent<PhotonView>();
+    }
+
+
+    void Update()
+    {
+        turn = Input.GetAxisRaw("Mouse X");
     }
 
     // Update is called once per frame
@@ -32,9 +38,13 @@ public class playerController : MonoBehaviourPun
             moveInput.y = Input.GetAxisRaw("Vertical");
 
             Vector3 newPos = transform.forward * moveInput.y + transform.right * moveInput.x;
-            Vector3 smoothNewPos = Vector3.Lerp(transform.position, transform.position + newPos, playerSpeed * smoothSpeed * Time.deltaTime);
+            Vector3 smoothNewPos = Vector3.Lerp(transform.position, transform.position + newPos, playerSpeed * smoothSpeed * Time.fixedDeltaTime);
 
             plrRigidbody.MovePosition(smoothNewPos);
+
+            Quaternion newRot = transform.rotation * Quaternion.Euler(transform.up * turn * turnSpeed * Time.fixedDeltaTime);
+
+            plrRigidbody.MoveRotation(newRot);
         }
     }
 
