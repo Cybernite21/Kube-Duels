@@ -12,6 +12,8 @@ public class createAndJoinRooms : MonoBehaviourPunCallbacks
     public InputField joinRoomInput;
     public InputField playerNameInput;
 
+    public Text errorText;
+
     void Start()
     {
         if(PlayerPrefs.GetString("localPlayerName") != null)
@@ -42,6 +44,18 @@ public class createAndJoinRooms : MonoBehaviourPunCallbacks
 
         //load level
         PhotonNetwork.LoadLevel("Game");
+    }
+
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        base.OnCreateRoomFailed(returnCode, message);
+        errorText.text = "Creating room failed!\nTry a different room name";
+    }
+
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        base.OnJoinRoomFailed(returnCode, message);
+        errorText.text = "Joining room failed!\nTry a different room name, or check the spelling";
     }
 
     //stores Player name in playerPrefs

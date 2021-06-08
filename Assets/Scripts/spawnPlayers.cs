@@ -11,6 +11,7 @@ public class spawnPlayers : MonoBehaviour
     public Vector3 plrSpawnMax;
 
     public Text playerNameText;
+    public Text roomNameText;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class spawnPlayers : MonoBehaviour
         plr.GetComponent<PhotonView>().RPC("changeColor", RpcTarget.AllBuffered, new Vector3(randomColor.r, randomColor.g, randomColor.b));
 
         playerNameText.text = "Name: " + PhotonNetwork.NickName;
+        roomNameText.text = "Room: " + PhotonNetwork.CurrentRoom.Name;
     }
 
     // Update is called once per frame
