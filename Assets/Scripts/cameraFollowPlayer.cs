@@ -7,7 +7,12 @@ public class cameraFollowPlayer : MonoBehaviour
 {
 
     public float cameraFollowSmoothSpeed = 0.5f;
+    public float lookAtOffset = 0.1f;
+    public float zoomSpped = 4f;
     public Vector3 offset;
+    public Vector2 minMaxZoom = new Vector2(1f, 5f);
+
+    float currentZoom = 1f;
 
     Transform plr;
 
@@ -26,15 +31,20 @@ public class cameraFollowPlayer : MonoBehaviour
         {
             StartCoroutine(findLocalPlayer());
         }
+
+        currentZoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpped;
+        currentZoom = Mathf.Clamp(currentZoom, minMaxZoom.x, minMaxZoom.y);
     }
 
     void FixedUpdate()
     {
-        Vector3 newPos = plr.position + plr.forward * offset.z + plr.right * offset.x + plr.up * offset.y;
+        Vector3 offsetWithZoom = offset * currentZoom;
+
+        Vector3 newPos = plr.position + plr.forward * offsetWithZoom.z + plr.right * offsetWithZoom.x + plr.up * offsetWithZoom.y;
         Vector3 smoothNewPos = Vector3.Lerp(transform.position, newPos, cameraFollowSmoothSpeed * Time.deltaTime);
 
         transform.position = smoothNewPos;
-        transform.LookAt(plr);
+        transform.LookAt(plr.position + Vector3.up * lookAtOffset);
     }
 
     IEnumerator findLocalPlayer()
