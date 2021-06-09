@@ -7,7 +7,7 @@ public class cameraFollowPlayer : MonoBehaviour
 {
 
     public float cameraFollowSmoothSpeed = 0.5f;
-    public float lookAtOffset = 0.1f;
+    public Vector3 lookAtOffset;
     public float zoomSpped = 4f;
     public Vector3 offset;
     public Vector2 minMaxZoom = new Vector2(1f, 5f);
@@ -44,7 +44,7 @@ public class cameraFollowPlayer : MonoBehaviour
         Vector3 smoothNewPos = Vector3.Lerp(transform.position, newPos, cameraFollowSmoothSpeed * Time.deltaTime);
 
         transform.position = smoothNewPos;
-        transform.LookAt(plr.position + Vector3.up * lookAtOffset);
+        transform.LookAt(plr.position + lookAtOffset);
     }
 
     IEnumerator findLocalPlayer()

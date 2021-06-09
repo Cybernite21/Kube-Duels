@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4747371319857126996}
   - component: {fileID: 2578635613656501189}
   - component: {fileID: 9003216812289391753}
+  - component: {fileID: 1690957618}
   m_Layer: 6
   m_Name: GunPivot
   m_TagString: Untagged
@@ -54,7 +55,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 9003216812289391753}
-  sceneViewId: 2
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &9003216812289391753
@@ -73,6 +74,20 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 1
   m_UseLocal: 1
+--- !u!114 &1690957618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636133847064585556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b5ae5d555de584eb1147d1835ab915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpawn: {fileID: 0}
+  gunTiltSpeed: 75
 --- !u!1 &2090301075601227028
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +140,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 1002776556007047057}
-  sceneViewId: 4
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &1002776556007047057
@@ -261,7 +276,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 8605500605922789524}
-  sceneViewId: 3
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &8605500605922789524
@@ -433,7 +448,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: -7690611037578469969}
   - {fileID: -925226911407027111}
-  sceneViewId: 1
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &-7690611037578469969
