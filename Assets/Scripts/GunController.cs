@@ -16,6 +16,7 @@ public class GunController : MonoBehaviourPun
 
     [ColorUsage(true, true)]
     public Color lazerNoEnemyColor;
+    [ColorUsage(true, true)]
     public Color lazerEnemyColor;
 
     float turn;

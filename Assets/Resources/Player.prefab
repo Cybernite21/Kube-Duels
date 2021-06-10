@@ -99,8 +99,8 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 64
-  lazerNoEnemyColor: {r: 0, g: 0, b: 0, a: 0}
-  lazerEnemyColor: {r: 0, g: 0, b: 0, a: 0}
+  lazerNoEnemyColor: {r: 9.189588, g: 0, b: 0, a: 0}
+  lazerEnemyColor: {r: 0.3015452, g: 9.189589, b: 0, a: 0}
 --- !u!120 &4809887404747464232
 LineRenderer:
   m_ObjectHideFlags: 0
