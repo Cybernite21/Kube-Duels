@@ -12,7 +12,6 @@ public class GunController : MonoBehaviourPun
     public float shootCoolDownSecs = 0.25f;
     public float aimLazerDistance = 2.5f;
     public LayerMask aimLazerMask;
-    public LayerMask playerMask;
 
     [ColorUsage(true, true)]
     public Color lazerNoEnemyColor;
@@ -107,9 +106,16 @@ public class GunController : MonoBehaviourPun
         aimEnemyRay.origin = bulletSpawn.transform.position;
         aimEnemyRay.direction = bulletSpawn.transform.forward;
 
-        if (Physics.Raycast(aimEnemyRay.origin, aimEnemyRay.direction, out aimHit, 50f, playerMask, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(aimEnemyRay.origin, aimEnemyRay.direction, out aimEnemyHit, 50f, aimLazerMask, QueryTriggerInteraction.Ignore))
         {
-            aimLazer.material.color = lazerEnemyColor;
+            if (aimEnemyHit.collider.gameObject.tag == "Player")
+            {
+                aimLazer.material.color = lazerEnemyColor;
+            }
+            else
+            {
+                aimLazer.material.color = lazerNoEnemyColor;
+            }
         }
         else
         {
