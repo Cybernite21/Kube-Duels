@@ -10,14 +10,35 @@ public class GunController : MonoBehaviourPun
     public float gunTiltSpeed = 75f;
     public float bulletSpeed = 100f;
     public float shootCoolDownSecs = 0.25f;
+    public float aimLazerDistance = 2.5f;
+    public LayerMask aimLazerMask;
+    public LayerMask playerMask;
+
+    [ColorUsage(true, true)]
+    public Color lazerNoEnemyColor;
+    public Color lazerEnemyColor;
 
     float turn;
     bool canShoot = true;
 
+    LineRenderer aimLazer;
+
+    Ray aimRay;
+    RaycastHit aimHit;
+
+    Ray aimEnemyRay;
+    RaycastHit aimEnemyHit;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (photonView.IsMine)
+        {
+            aimLazer = GetComponent<LineRenderer>();
+            aimLazer.SetPosition(0, bulletSpawn.transform.localPosition);
+            aimLazer.enabled = true;
+            aimRay = new Ray(bulletSpawn.transform.position, bulletSpawn.transform.forward);
+        }
     }
 
     // Update is called once per frame
@@ -45,6 +66,9 @@ public class GunController : MonoBehaviourPun
                 newBullet.transform.forward = transform.forward;
                 StartCoroutine(shootCooldown());
             }
+
+            
+            //aimLazer.SetPosition(1, transform.InverseTransformPoint(bulletSpawn.transform.position + transform.forward * aimLazerDistance));
         }
     }
 
@@ -58,6 +82,37 @@ public class GunController : MonoBehaviourPun
 
     void FixedUpdate()
     {
+        aimLazerSetPos();
 
+    }
+
+    void aimLazerSetPos()
+    {
+        aimRay.origin = bulletSpawn.transform.position;
+        aimRay.direction = bulletSpawn.transform.forward;
+
+        if (Physics.Raycast(aimRay.origin, aimRay.direction, out aimHit, aimLazerDistance, aimLazerMask, QueryTriggerInteraction.Ignore))
+        {
+            aimLazer.SetPosition(1, transform.InverseTransformPoint(aimHit.point));
+        }
+        else
+        {
+            aimLazer.SetPosition(1, transform.InverseTransformPoint(bulletSpawn.transform.position + transform.forward * aimLazerDistance));
+        }
+    }
+
+    void aimLazerEnemyCheck()
+    {
+        aimEnemyRay.origin = bulletSpawn.transform.position;
+        aimEnemyRay.direction = bulletSpawn.transform.forward;
+
+        if (Physics.Raycast(aimEnemyRay.origin, aimEnemyRay.direction, out aimHit, 50f, playerMask, QueryTriggerInteraction.Ignore))
+        {
+            aimLazer.material.color = lazerEnemyColor;
+        }
+        else
+        {
+            aimLazer.material.color = lazerNoEnemyColor;
+        }
     }
 }
