@@ -10,14 +10,20 @@ public class bullet : MonoBehaviourPun
     public float bulletDeathSecs = 5f;
     public LayerMask shootLayerMask;
 
+    Vector3 prevPos;
+
     Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        StartCoroutine(bulletDeath());
-        StartCoroutine(bulletHitCheck());
+
+        if (photonView.IsMine)
+        {
+            StartCoroutine(bulletDeath());
+            StartCoroutine(bulletHitCheck());
+        }
     }
 
     // Update is called once per frame
@@ -26,6 +32,7 @@ public class bullet : MonoBehaviourPun
         if (photonView.IsMine)
         {
             transform.position += transform.forward * bulletspeed * Time.deltaTime;
+            prevPos = transform.position;
         }
     }
 
@@ -34,7 +41,7 @@ public class bullet : MonoBehaviourPun
         while(true)
         {
             Ray r = new Ray(transform.position + transform.forward * transform.localScale.z, transform.forward);
-            RaycastHit[] hit = Physics.BoxCastAll(r.origin, transform.localScale, r.direction, Quaternion.identity, bulletSkin, shootLayerMask, QueryTriggerInteraction.Ignore);
+            RaycastHit[] hit = Physics.BoxCastAll(r.origin, transform.localScale, r.direction, Quaternion.identity, (transform.position-prevPos).magnitude, shootLayerMask, QueryTriggerInteraction.Ignore);
             if (hit.Length != 0)
             {
                 print("b");
