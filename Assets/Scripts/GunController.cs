@@ -83,7 +83,7 @@ public class GunController : MonoBehaviourPun
     void FixedUpdate()
     {
         aimLazerSetPos();
-
+        aimLazerEnemyCheck();
     }
 
     void aimLazerSetPos()
@@ -110,16 +110,16 @@ public class GunController : MonoBehaviourPun
         {
             if (aimEnemyHit.collider.gameObject.tag == "Player")
             {
-                aimLazer.material.color = lazerEnemyColor;
+                aimLazer.material.SetColor("_aimLazerColor", lazerEnemyColor);
             }
             else
             {
-                aimLazer.material.color = lazerNoEnemyColor;
+                aimLazer.material.SetColor("_aimLazerColor", lazerNoEnemyColor);
             }
         }
         else
         {
-            aimLazer.material.color = lazerNoEnemyColor;
+            aimLazer.material.SetColor("_aimLazerColor", lazerNoEnemyColor);
         }
     }
 }
