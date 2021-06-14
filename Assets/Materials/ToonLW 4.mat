@@ -27,6 +27,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: baa87608a082eff4a8c5c1aa7c5bb623, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpecMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecMap2:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -44,6 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _AffectedbyLights: 0.2
     - _AlphaCutoff: 0.5
     - _Dimming: 0.5
     - _DistanceCutoff: 20
@@ -53,14 +58,18 @@ Material:
     - _Float3: 0.5
     - _Float4: 0.69
     - _Keyword0: 0
+    - _Max: 1.19
     - _Max2: 1.19
+    - _Min: 1.18
     - _Min2: 1.18
     - _NormalScale: 1
     - _OutlineWidth: 0.005
     - _RimOffset: 0.76
     - _RimOffset1: 0.7
     - _RimShadow: 1
+    - _SpecIntensity: 0.322
     - _SpecIntensity2: 0.322
+    - _SpecSize: 0.285
     - _SpecSize2: 0.285
     - __dirty: 0
     m_Colors:
