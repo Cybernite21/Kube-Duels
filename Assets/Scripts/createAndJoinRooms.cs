@@ -75,7 +75,7 @@ public class createAndJoinRooms : MonoBehaviourPunCallbacks
         {
             if (p.NickName == newLocalPlayerName)
             {
-                newLocalPlayerName = newLocalPlayerName + Random.Range(0f, 9f);
+                newLocalPlayerName = newLocalPlayerName + Random.Range(0, 10);
             }
         }
 
