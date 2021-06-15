@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AffectedbyLights: 0.2
+    - _AffectedbyLights: 0.326
     - _AlphaCutoff: 0.5
     - _Dimming: 0.5
     - _DistanceCutoff: 20
@@ -66,11 +66,13 @@ Material:
     - _OutlineWidth: 0.005
     - _RimOffset: 0.76
     - _RimOffset1: 0.7
-    - _RimShadow: 1
+    - _RimShadow: 0
     - _SpecIntensity: 0.322
     - _SpecIntensity2: 0.322
     - _SpecSize: 0.285
     - _SpecSize2: 0.285
+    - _SpecularLerpStep: 1
+    - _SpecularStep: 0.07
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 0.17000002, b: 0.17000002, a: 0}
