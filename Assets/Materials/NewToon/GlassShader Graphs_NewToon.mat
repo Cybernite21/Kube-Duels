@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_NewToon 1
-  m_Shader: {fileID: -6465566751694194690, guid: 9f28be0da47daf6488b6cb3413809dc4, type: 3}
+  m_Name: GlassShader Graphs_NewToon
+  m_Shader: {fileID: -6465566751694194690, guid: 15bae21021f152046ba741400ef1d38c, type: 3}
   m_ShaderKeywords: MAIN_LIGHT_CALCULATE_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
     ADDITIONAL_LIGHT_CALCULATE_SHADOWS
   m_LightmapFlags: 4
@@ -39,12 +39,14 @@ Material:
     m_Floats:
     - MAIN_LIGHT_CALCULATE_SHADOWS: 1
     - REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR: 0
-    - Vector1_0ea0645feb6d4103a89b0f5ec73dde0c: 0.145
-    - Vector1_7938bcb7e51c464798a91e9c74aea64a: 0.4
+    - Vector1_0ea0645feb6d4103a89b0f5ec73dde0c: 0
+    - Vector1_3052a69dec2848bc9ce85cec4351f5a5: 0.98
+    - Vector1_7938bcb7e51c464798a91e9c74aea64a: 0.2
     - Vector1_dd3f560bea874c468e27641971ad3b4d: 1
-    - Vector1_e57414d6f9ba41b6a161929fab5232ad: 0
+    - Vector1_e57414d6f9ba41b6a161929fab5232ad: 1
+    - Vector1_ee55b338a02c4e1d945093bd82313bec: 0.32
     - _MAIN_LIGHT_SHADOWS_CASCADE: 1
     - _SHADOWS_SOFT: 1
     m_Colors:
-    - Color_841a7e86b4504be288f7f325df0b9d7f: {r: 1, g: 1, b: 1, a: 0}
+    - Color_841a7e86b4504be288f7f325df0b9d7f: {r: 0.929, g: 0.96213335, b: 1, a: 0}
   m_BuildTextureStacks: []
