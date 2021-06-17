@@ -48,5 +48,6 @@ Material:
     - _MAIN_LIGHT_SHADOWS_CASCADE: 1
     - _SHADOWS_SOFT: 1
     m_Colors:
+    - Color_363916c16a5d4710bfcb5dca18c202a2: {r: 1, g: 1, b: 1, a: 0}
     - Color_841a7e86b4504be288f7f325df0b9d7f: {r: 0.929, g: 0.96213335, b: 1, a: 0}
   m_BuildTextureStacks: []
