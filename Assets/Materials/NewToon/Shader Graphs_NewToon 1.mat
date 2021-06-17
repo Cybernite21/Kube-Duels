@@ -61,4 +61,5 @@ Material:
     m_Colors:
     - Color_4d9ff0b5970c49ffbe6422b263b4b9da: {r: 1, g: 1, b: 1, a: 0}
     - Color_841a7e86b4504be288f7f325df0b9d7f: {r: 1, g: 1, b: 1, a: 0}
+    - _DiffTint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

@@ -60,6 +60,6 @@ public class playerController : MonoBehaviourPun
     [PunRPC]
     public void changeColor(Vector3 newColor)
     {
-        GetComponent<Renderer>().material.color = new Color(newColor.x, newColor.y, newColor.z);
+        GetComponent<Renderer>().material.SetColor("_DiffTint", new Color(newColor.x, newColor.y, newColor.z));
     }
 }

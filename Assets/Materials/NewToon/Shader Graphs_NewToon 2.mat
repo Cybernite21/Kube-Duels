@@ -37,6 +37,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Boolean_184154e182554c59929dc752b72bb544: 0
     - MAIN_LIGHT_CALCULATE_SHADOWS: 1
     - REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR: 0
     - Vector1_7938bcb7e51c464798a91e9c74aea64a: 0.4
@@ -45,4 +46,5 @@ Material:
     - _SHADOWS_SOFT: 1
     m_Colors:
     - Color_841a7e86b4504be288f7f325df0b9d7f: {r: 0.23137255, g: 1, b: 0, a: 1}
+    - _DiffTint: {r: 0.23137255, g: 1, b: 0, a: 1}
   m_BuildTextureStacks: []
