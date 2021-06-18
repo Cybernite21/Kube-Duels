@@ -8,11 +8,13 @@ public class bullet : MonoBehaviourPun
     public float bulletspeed = 10f;
     public float bulletSkin = 0.05f;
     public float bulletDeathSecs = 5f;
+    public int damage = 10;
     public LayerMask shootLayerMask;
 
     Vector3 prevPos;
 
     Rigidbody rb;
+    RaycastHit hit;
 
     // Start is called before the first frame update
     void Start()
@@ -40,16 +42,30 @@ public class bullet : MonoBehaviourPun
     {
         while(true)
         {
-            Ray r = new Ray(transform.position + transform.forward * transform.localScale.z, transform.forward);
-            RaycastHit[] hit = Physics.BoxCastAll(r.origin, transform.localScale, r.direction, Quaternion.identity, (transform.position-prevPos).magnitude, shootLayerMask, QueryTriggerInteraction.Ignore);
-            if (hit.Length != 0)
+            Ray r = new Ray(transform.position + transform.forward * transform.localScale.z, transform.forward); 
+            
+            if (Physics.BoxCast(r.origin, transform.localScale, r.direction, out hit, Quaternion.identity, (transform.position - prevPos).magnitude, shootLayerMask, QueryTriggerInteraction.Ignore);)
             {
                 print("b");
-                PhotonNetwork.Destroy(photonView);
+                //PhotonNetwork.Destroy(photonView);
+                if(hit.collider.gameObject.GetComponent<ILivingEntity>()!=null)
+                {
+                    dealDamage();
+                }
+                else
+                {
+                    PhotonNetwork.Destroy(photonView);
+                }
             }
             yield return new WaitForFixedUpdate();
         }
         yield return null;
+    }
+
+    void dealDamage()
+    {
+        hit.collider.gameObject.GetComponent<ILivingEntity>().takeDamage(damage);
+        PhotonNetwork.Destroy(photonView);
     }
 
     IEnumerator bulletDeath()

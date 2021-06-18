@@ -6,7 +6,7 @@ using Photon.Pun;
 
 
 [RequireComponent(typeof(Rigidbody))]
-public class playerController : MonoBehaviourPun
+public class playerController : MonoBehaviourPun, ILivingEntity
 {
 
     public float playerSpeed = 2f;
@@ -17,6 +17,8 @@ public class playerController : MonoBehaviourPun
     Vector2 moveInput;
 
     float turn;
+
+    private int _health = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +56,27 @@ public class playerController : MonoBehaviourPun
             Quaternion newRot = transform.rotation * Quaternion.Euler(transform.up * turn * turnSpeed * Time.fixedDeltaTime);
 
             plrRigidbody.MoveRotation(newRot);
+        }
+    }
+
+    //ILivingEntity Functions
+    public void takeDamage(int damage)
+    {
+        health = Mathf.Clamp(health - damage, 0, 100);
+    }
+    public void gainHealth(int gainAmmount)
+    {
+        health = Mathf.Clamp(health + gainAmmount, 0, 100);
+    }
+    public int health
+    {
+        get
+        {
+            return _health;
+        }
+        private set
+        {
+            _health = value;
         }
     }
 

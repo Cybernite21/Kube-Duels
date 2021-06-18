@@ -7,6 +7,7 @@ public class GunController : MonoBehaviourPun
 {
     public GameObject bulletSpawn;
     public GameObject bulletPrefab;
+    public int damage = 5;
     public float gunTiltSpeed = 75f;
     public float bulletSpeed = 100f;
     public float shootCoolDownSecs = 0.25f;
@@ -63,6 +64,7 @@ public class GunController : MonoBehaviourPun
             {
                 GameObject newBullet = PhotonNetwork.Instantiate(bulletPrefab.name, bulletSpawn.transform.position, Quaternion.identity);
                 newBullet.GetComponent<bullet>().bulletspeed = bulletSpeed;
+                newBullet.GetComponent<bullet>().damage = damage;
                 newBullet.transform.forward = transform.forward;
                 StartCoroutine(shootCooldown());
             }
