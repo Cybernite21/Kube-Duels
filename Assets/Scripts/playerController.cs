@@ -35,9 +35,16 @@ public class playerController : MonoBehaviourPun, ILivingEntity
 
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            Cursor.lockState = CursorLockMode.None;
-            PhotonNetwork.LeaveRoom();
-            SceneManager.LoadScene("Lobby");
+            leaveRoom();
+        }
+
+        if(photonView.IsMine)
+        {
+            if(_health <= 0)
+            {
+                //photonView.RPC("localPlayerDied", RpcTarget.AllBuffered);
+                localPlayerDied();
+            }
         }
     }
 
@@ -70,6 +77,19 @@ public class playerController : MonoBehaviourPun, ILivingEntity
     public void gainHealth(int gainAmmount)
     {
         _health = Mathf.Clamp(_health + gainAmmount, 0, 100);
+    }
+
+    //local player death
+    void localPlayerDied()
+    {
+        leaveRoom();
+    }
+
+    void leaveRoom()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("Lobby");
     }
 
     [PunRPC]
