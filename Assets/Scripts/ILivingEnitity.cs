@@ -7,8 +7,6 @@ using UnityEngine;
 
 public interface ILivingEntity
 {
-    int health { get; set; }
-
     public void takeDamage(int damage);
     public void gainHealth(int gainAmmount);
 }

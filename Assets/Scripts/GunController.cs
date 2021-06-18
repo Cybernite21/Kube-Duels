@@ -84,8 +84,11 @@ public class GunController : MonoBehaviourPun
 
     void FixedUpdate()
     {
-        aimLazerSetPos();
-        aimLazerEnemyCheck();
+        if(photonView.IsMine)
+        {
+            aimLazerSetPos();
+            aimLazerEnemyCheck();
+        }
     }
 
     void aimLazerSetPos()

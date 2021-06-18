@@ -18,6 +18,7 @@ public class playerController : MonoBehaviourPun, ILivingEntity
 
     float turn;
 
+    [SerializeField]
     private int _health = 100;
 
     // Start is called before the first frame update
@@ -60,24 +61,15 @@ public class playerController : MonoBehaviourPun, ILivingEntity
     }
 
     //ILivingEntity Functions
+    [PunRPC]
     public void takeDamage(int damage)
     {
-        health = Mathf.Clamp(health - damage, 0, 100);
+        _health = Mathf.Clamp(_health - damage, 0, 100);
     }
+    [PunRPC]
     public void gainHealth(int gainAmmount)
     {
-        health = Mathf.Clamp(health + gainAmmount, 0, 100);
-    }
-    public int health
-    {
-        get
-        {
-            return _health;
-        }
-        private set
-        {
-            _health = value;
-        }
+        _health = Mathf.Clamp(_health + gainAmmount, 0, 100);
     }
 
     [PunRPC]

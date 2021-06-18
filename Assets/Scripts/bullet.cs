@@ -40,17 +40,21 @@ public class bullet : MonoBehaviourPun
 
     IEnumerator bulletHitCheck()
     {
-        while(true)
+        Ray r = new Ray(transform.position + transform.forward * transform.localScale.z, transform.forward);
+        while (true)
         {
-            Ray r = new Ray(transform.position + transform.forward * transform.localScale.z, transform.forward); 
-            
-            if (Physics.BoxCast(r.origin, transform.localScale, r.direction, out hit, Quaternion.identity, (transform.position - prevPos).magnitude, shootLayerMask, QueryTriggerInteraction.Ignore);)
+
+            bool didHit = Physics.BoxCast(r.origin, transform.localScale, r.direction, out hit, Quaternion.identity, (transform.position - prevPos).magnitude, shootLayerMask, QueryTriggerInteraction.Ignore);
+            if (didHit)
             {
                 print("b");
                 //PhotonNetwork.Destroy(photonView);
                 if(hit.collider.gameObject.GetComponent<ILivingEntity>()!=null)
                 {
-                    dealDamage();
+                    if(photonView.IsMine)
+                    {
+                        dealDamage();
+                    }
                 }
                 else
                 {
@@ -64,7 +68,7 @@ public class bullet : MonoBehaviourPun
 
     void dealDamage()
     {
-        hit.collider.gameObject.GetComponent<ILivingEntity>().takeDamage(damage);
+        hit.collider.gameObject.GetComponent<PhotonView>().RPC("takeDamage", RpcTarget.AllBuffered, damage);
         PhotonNetwork.Destroy(photonView);
     }
 

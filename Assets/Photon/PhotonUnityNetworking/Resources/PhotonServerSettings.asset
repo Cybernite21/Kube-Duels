@@ -39,6 +39,8 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - changeColor
+  - gainHealth
+  - takeDamage
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

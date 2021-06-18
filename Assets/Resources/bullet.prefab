@@ -152,6 +152,7 @@ MonoBehaviour:
   bulletspeed: 10
   bulletSkin: 1
   bulletDeathSecs: 5
+  damage: 10
   shootLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
