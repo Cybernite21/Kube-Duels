@@ -21,13 +21,15 @@ public class playerController : MonoBehaviourPun, ILivingEntity
     float turn;
 
     [SerializeField]
-    private int _health = 100;
+    private int _health;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         plrRigidbody = GetComponent<Rigidbody>();
+
+        _health = plrSettings.startingHealth;
     }
 
 

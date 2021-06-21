@@ -5,10 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "playerSettings", menuName = "ScriptableObjects/PlayerSettings")]
 public class playerSettings : ScriptableObject
 {
-    [Header("Player Movement:", order = 0)]
+    [Header("Player:", order = 0)]
     public float playerSpeed = 5f;
     public float smoothSpeed = 0.5f;
     public float turnSpeed = 100f;
+    public int startingHealth = 100;
     [Space(10)]
 
     [Header("Effects:", order = 1)]
