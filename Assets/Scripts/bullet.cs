@@ -68,7 +68,7 @@ public class bullet : MonoBehaviourPun
 
     void dealDamage()
     {
-        hit.collider.gameObject.GetComponent<PhotonView>().RPC("takeDamage", RpcTarget.AllBuffered, damage);
+        hit.collider.gameObject.GetComponent<PhotonView>().RPC("takeDamage", RpcTarget.AllBuffered, damage, hit.point);
         PhotonNetwork.Destroy(photonView);
     }
 

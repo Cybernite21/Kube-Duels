@@ -71,8 +71,9 @@ public class playerController : MonoBehaviourPun, ILivingEntity
 
     //ILivingEntity Functions
     [PunRPC]
-    public void takeDamage(int damage)
+    public void takeDamage(int damage, Vector3 point)
     {
+        Instantiate(plrSettings.bloodParticle, point, Quaternion.identity);
         _health = Mathf.Clamp(_health - damage, 0, 100);
     }
     [PunRPC]

@@ -12,6 +12,6 @@ public class playerSettings : ScriptableObject
     [Space(10)]
 
     [Header("Effects:", order = 1)]
-    public bool bloodEffects = true;
+    public bool useBloodEffects = true;
     public GameObject bloodParticle;
 }
