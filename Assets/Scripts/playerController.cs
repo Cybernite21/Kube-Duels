@@ -14,6 +14,12 @@ public class playerController : MonoBehaviourPun, ILivingEntity
     //float playerSpeed = 2f;
     //float smoothSpeed = 0.5f;
     //float turnSpeed = 75f;
+    //float jumpPower = 2.0f;
+
+    bool isGrounded = true;
+    bool jump = false;
+
+    BoxCollider boxCollider;
 
     Rigidbody plrRigidbody;
     Vector2 moveInput;
@@ -30,6 +36,7 @@ public class playerController : MonoBehaviourPun, ILivingEntity
         plrRigidbody = GetComponent<Rigidbody>();
 
         _health = plrSettings.startingHealth;
+        boxCollider = GetComponent<BoxCollider>();
     }
 
 
@@ -48,6 +55,11 @@ public class playerController : MonoBehaviourPun, ILivingEntity
             {
                 //photonView.RPC("localPlayerDied", RpcTarget.AllBuffered);
                 localPlayerDied();
+            }
+            //Jump
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !jump)
+            {
+                jump = true;
             }
         }
     }
@@ -68,6 +80,43 @@ public class playerController : MonoBehaviourPun, ILivingEntity
             Quaternion newRot = transform.rotation * Quaternion.Euler(transform.up * turn * plrSettings.turnSpeed * Time.fixedDeltaTime);
 
             plrRigidbody.MoveRotation(newRot);
+
+            //Jump
+            if(jump && isGrounded)
+            {
+                plrRigidbody.velocity = new Vector3(plrRigidbody.velocity.x, 0, plrRigidbody.velocity.z);
+                isGrounded = false;
+                plrRigidbody.AddForce(transform.up * plrSettings.jumpPower, ForceMode.Impulse);
+                isGrounded = false;
+                jump = false;
+            }
+            /*if(!jump && !isGrounded && Physics.Raycast(transform.position, -transform.up, boxCollider.bounds.extents.y + 0.025f))
+            {
+                isGrounded = true;
+            }*/
+        }
+    }
+
+    //collisions
+    void OnCollisionExit(Collision collision)
+    {
+        if(photonView.IsMine && collision.gameObject.tag == "floor")
+        {
+            isGrounded = false;
+        }
+    }
+    void OnCollisionStay(Collision collision)
+    {
+        if (photonView.IsMine && collision.gameObject.tag == "floor")
+        {
+            isGrounded = true;
+        }
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (photonView.IsMine && collision.gameObject.tag == "floor")
+        {
+            //isGrounded = true;
         }
     }
 

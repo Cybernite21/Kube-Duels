@@ -9,6 +9,7 @@ public class playerSettings : ScriptableObject
     public float playerSpeed = 5f;
     public float smoothSpeed = 0.5f;
     public float turnSpeed = 100f;
+    public float jumpPower = 2.0f;
     public int startingHealth = 100;
     [Space(10)]
 

@@ -15,5 +15,7 @@ MonoBehaviour:
   playerSpeed: 5
   smoothSpeed: 0.5
   turnSpeed: 100
-  bloodEffects: 1
+  jumpPower: 4
+  startingHealth: 100
+  useBloodEffects: 1
   bloodParticle: {fileID: 193062, guid: 01949c12a89de284792dc4b7b7128404, type: 3}
