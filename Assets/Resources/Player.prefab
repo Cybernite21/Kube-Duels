@@ -87,18 +87,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b5ae5d555de584eb1147d1835ab915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun: {fileID: 11400000, guid: cba61fcab4b610d43a04f89297240d88, type: 2}
   bulletSpawn: {fileID: 2090301075601227028}
   bulletPrefab: {fileID: 4503773168380844320, guid: 56a12a5d16dccb04b8a0b90e13eb5a4d, type: 3}
-  damage: 5
-  gunTiltSpeed: 75
-  bulletSpeed: 100
-  shootCoolDownSecs: 0.25
-  aimLazerDistance: 2.5
-  aimLazerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  lazerNoEnemyColor: {r: 9.189588, g: 0, b: 0, a: 0}
-  lazerEnemyColor: {r: 0.3015452, g: 9.189589, b: 0, a: 0}
 --- !u!120 &4809887404747464232
 LineRenderer:
   m_ObjectHideFlags: 0
