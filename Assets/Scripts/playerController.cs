@@ -9,9 +9,11 @@ using Photon.Pun;
 public class playerController : MonoBehaviourPun, ILivingEntity
 {
 
-    public float playerSpeed = 2f;
-    public float smoothSpeed = 0.5f;
-    public float turnSpeed = 75f;
+    public playerSettings plrSettings;
+
+    //float playerSpeed = 2f;
+    //float smoothSpeed = 0.5f;
+    //float turnSpeed = 75f;
 
     Rigidbody plrRigidbody;
     Vector2 moveInput;
@@ -57,11 +59,11 @@ public class playerController : MonoBehaviourPun, ILivingEntity
             moveInput.y = Input.GetAxisRaw("Vertical");
 
             Vector3 newPos = transform.forward * moveInput.y + transform.right * moveInput.x;
-            Vector3 smoothNewPos = Vector3.Lerp(transform.position, transform.position + newPos, playerSpeed * smoothSpeed * Time.fixedDeltaTime);
+            Vector3 smoothNewPos = Vector3.Lerp(transform.position, transform.position + newPos, plrSettings.playerSpeed * plrSettings.smoothSpeed * Time.fixedDeltaTime);
 
             plrRigidbody.MovePosition(smoothNewPos);
 
-            Quaternion newRot = transform.rotation * Quaternion.Euler(transform.up * turn * turnSpeed * Time.fixedDeltaTime);
+            Quaternion newRot = transform.rotation * Quaternion.Euler(transform.up * turn * plrSettings.turnSpeed * Time.fixedDeltaTime);
 
             plrRigidbody.MoveRotation(newRot);
         }
