@@ -17,6 +17,8 @@ MonoBehaviour:
   gunTiltSpeed: 75
   bulletSpeed: 100
   shootCoolDownSecs: 0.25
+  gunCoolDown: 0
+  gunCoolDownSecs: 3
   aimLazerDistance: 2.5
   aimLazerMask:
     serializedVersion: 2

@@ -21,6 +21,7 @@ public class GunController : MonoBehaviourPun
     [ColorUsage(true, true)]
     public Color lazerEnemyColor;*/
 
+    int bulletsShot = 0;
     float turn;
     bool canShoot = true;
 
@@ -68,6 +69,7 @@ public class GunController : MonoBehaviourPun
                 newBullet.GetComponent<bullet>().bulletspeed = gun.bulletSpeed;
                 newBullet.GetComponent<bullet>().damage = gun.damage;
                 newBullet.transform.forward = transform.forward;
+                bulletsShot++;
                 StartCoroutine(shootCooldown());
             }
 
@@ -83,6 +85,13 @@ public class GunController : MonoBehaviourPun
         if(!gun.holdToRapidFire)
         {
             yield return new WaitWhile(() => Input.GetMouseButton(0));
+        }
+        if(gun.gunCoolDown > 0)
+        {
+            if(bulletsShot % gun.gunCoolDown == 0)
+            {
+                yield return new WaitForSeconds(gun.gunCoolDownSecs);
+            }
         }
         canShoot = true;
         yield return null;
