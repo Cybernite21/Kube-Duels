@@ -131,7 +131,11 @@ public class playerController : MonoBehaviourPun, ILivingEntity
     [PunRPC]
     public void takeDamage(int damage, Vector3 point)
     {
-        Instantiate(plrSettings.bloodParticle, point, Quaternion.identity);
+        if(plrSettings.useBloodEffects)
+        {
+            Instantiate(plrSettings.bloodParticle, point, Quaternion.identity);
+        }
+
         _health = Mathf.Clamp(_health - damage, 0, plrSettings.startingHealth);
         if (photonView.IsMine)
         {
