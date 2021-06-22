@@ -39,8 +39,11 @@ public class playerController : MonoBehaviourPun, ILivingEntity
         plrRigidbody = GetComponent<Rigidbody>();
 
         _health = plrSettings.startingHealth;
-        healthBar = GameObject.FindGameObjectWithTag("healthBar").GetComponent<Slider>();
-        boxCollider = GetComponent<BoxCollider>();
+        if(photonView.IsMine)
+        {
+            healthBar = GameObject.FindGameObjectWithTag("healthBar").GetComponent<Slider>();
+            boxCollider = GetComponent<BoxCollider>();
+        }
     }
 
 
@@ -129,16 +132,22 @@ public class playerController : MonoBehaviourPun, ILivingEntity
     public void takeDamage(int damage, Vector3 point)
     {
         Instantiate(plrSettings.bloodParticle, point, Quaternion.identity);
-        _health = Mathf.Clamp(_health - damage, 0, 100);
-        healthBar.maxValue = plrSettings.startingHealth;
-        healthBar.value = _health;
+        _health = Mathf.Clamp(_health - damage, 0, plrSettings.startingHealth);
+        if (photonView.IsMine)
+        {
+            healthBar.maxValue = plrSettings.startingHealth;
+            healthBar.value = _health;
+        }   
     }
     [PunRPC]
     public void gainHealth(int gainAmmount)
     {
-        _health = Mathf.Clamp(_health + gainAmmount, 0, 100);
-        healthBar.maxValue = plrSettings.startingHealth;
-        healthBar.value = _health;
+        _health = Mathf.Clamp(_health + gainAmmount, 0, plrSettings.startingHealth);
+        if (photonView.IsMine)
+        {
+            healthBar.maxValue = plrSettings.startingHealth;
+            healthBar.value = _health;
+        }
     }
 
     //local player death

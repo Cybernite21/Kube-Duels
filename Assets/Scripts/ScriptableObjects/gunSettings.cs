@@ -8,6 +8,7 @@ public class gunSettings : ScriptableObject
     [Header("Gun Settings:", order = 0)]
     public bool holdToRapidFire = false;
     public int damage = 5;
+    public float bulletDeathSecs = 10f;
     public float gunTiltSpeed = 75f;
     public float bulletSpeed = 100f;
     [Space(5)]
