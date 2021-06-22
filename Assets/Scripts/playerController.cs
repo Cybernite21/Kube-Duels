@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 
@@ -29,6 +30,8 @@ public class playerController : MonoBehaviourPun, ILivingEntity
     [SerializeField]
     private int _health;
 
+    Slider healthBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,7 @@ public class playerController : MonoBehaviourPun, ILivingEntity
         plrRigidbody = GetComponent<Rigidbody>();
 
         _health = plrSettings.startingHealth;
+        healthBar = GameObject.FindGameObjectWithTag("healthBar").GetComponent<Slider>();
         boxCollider = GetComponent<BoxCollider>();
     }
 
@@ -126,11 +130,15 @@ public class playerController : MonoBehaviourPun, ILivingEntity
     {
         Instantiate(plrSettings.bloodParticle, point, Quaternion.identity);
         _health = Mathf.Clamp(_health - damage, 0, 100);
+        healthBar.maxValue = plrSettings.startingHealth;
+        healthBar.value = _health;
     }
     [PunRPC]
     public void gainHealth(int gainAmmount)
     {
         _health = Mathf.Clamp(_health + gainAmmount, 0, 100);
+        healthBar.maxValue = plrSettings.startingHealth;
+        healthBar.value = _health;
     }
 
     //local player death
