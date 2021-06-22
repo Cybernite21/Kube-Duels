@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b79bb2bf07cb1b4eb02312c63e98687, type: 3}
   m_Name: defaultGunSettings
   m_EditorClassIdentifier: 
+  holdToRapidFire: 0
   damage: 5
   gunTiltSpeed: 75
   bulletSpeed: 100

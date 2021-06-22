@@ -62,7 +62,7 @@ public class GunController : MonoBehaviourPun
                 transform.localEulerAngles = new Vector3(315, 0, 0);
             }
 
-            if(Input.GetMouseButtonDown(0) && canShoot)
+            if(Input.GetMouseButton(0) && canShoot)
             {
                 GameObject newBullet = PhotonNetwork.Instantiate(bulletPrefab.name, bulletSpawn.transform.position, Quaternion.identity);
                 newBullet.GetComponent<bullet>().bulletspeed = gun.bulletSpeed;
@@ -80,6 +80,10 @@ public class GunController : MonoBehaviourPun
     {
         canShoot = false;
         yield return new WaitForSeconds(gun.shootCoolDownSecs);
+        if(!gun.holdToRapidFire)
+        {
+            yield return new WaitWhile(() => Input.GetMouseButton(0));
+        }
         canShoot = true;
         yield return null;
     }
